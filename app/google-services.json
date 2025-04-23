@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "364848477571",
+    "project_id": "carbookingapp-b3f56",
+    "storage_bucket": "carbookingapp-b3f56.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364848477571:android:6fe6a6db50f631c54cb2b6",
+        "android_client_info": {
+          "package_name": "com.example.carbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364848477571-2bi7hbt4f0dovs19of947kc17iqnoscu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carbooking",
+            "certificate_hash": "062c0e0dad853b298d331c5b6a7fc0c31f2a0647"
+          }
+        },
+        {
+          "client_id": "364848477571-72a7q178vcsjqjpgebrjd5geu458mv7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGkbtW-ZakgIoJjbq-e9BC1b77dFhbSEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364848477571-72a7q178vcsjqjpgebrjd5geu458mv7m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

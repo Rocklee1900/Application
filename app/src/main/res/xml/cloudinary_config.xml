@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cloudinary>
+    <cloud_name>your_cloud_name</cloud_name>
+    <secure>true</secure>
+</cloudinary>

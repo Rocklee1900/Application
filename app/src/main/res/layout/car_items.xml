@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp">
+
+    <!-- Background (hidden until swiped) -->
+    <RelativeLayout
+        android:id="@+id/backgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="97dp"
+        android:background="#EFEFEF"
+        android:gravity="end|center_vertical"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:id="@+id/deleteIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="Delete"
+            android:padding="8dp"
+            android:src="@drawable/delete"
+            app:tint="#F44336" />
+    </RelativeLayout>
+
+    <!-- Foreground (swipable part) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/foregroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+
+            <ImageButton
+                android:id="@+id/dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/carModel"
+                app:layout_constraintHorizontal_bias="0.982"
+                app:layout_constraintStart_toStartOf="@+id/carPrice"
+                android:background="@drawable/dots"
+                tools:layout_editor_absoluteY="-7dp" />
+
+
+            <!-- Car Image -->
+            <ImageView
+                android:id="@+id/carImage"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="Car Image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Car Model -->
+            <TextView
+                android:id="@+id/carModel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Model XYZ"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/carImage"
+                app:layout_constraintTop_toTopOf="@id/carImage"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Car Price -->
+            <TextView
+                android:id="@+id/carPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="$25,000"
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/carModel"
+                app:layout_constraintStart_toStartOf="@id/carModel"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Car Description -->
+            <TextView
+                android:id="@+id/carDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="A compact car with great mileage and stylish look."
+                android:textSize="13sp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                app:layout_constraintTop_toBottomOf="@id/carPrice"
+                app:layout_constraintStart_toStartOf="@id/carModel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/carImage" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>
