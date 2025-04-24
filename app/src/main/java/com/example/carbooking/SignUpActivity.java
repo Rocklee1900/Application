@@ -14,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carbooking.Model.AppUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,16 +26,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 100; // Request code for Google Sign-In
 
-    TextInputEditText editTextEmail, editTextPassword;
+    TextInputEditText etEmail, etPassword,etFirstName,etLastName,etPhone;
     Button buttonSignUp;
     ImageView buttonGoogleSignIn;
     FirebaseAuth mAuth;
+    FirebaseFirestore db;
     TextView textView;
     GoogleSignInClient googleSignInClient;
 
@@ -56,8 +59,13 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setupGoogleSignIn();
 
-        editTextEmail = findViewById(R.id.etEmail);
-        editTextPassword = findViewById(R.id.etPassword);
+        db = FirebaseFirestore.getInstance();
+
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        etFirstName = findViewById(R.id.etFirstName);
+        etLastName = findViewById(R.id.et_lastname);
+        etPhone = findViewById(R.id.etPhoneNumber);
         buttonSignUp = findViewById(R.id.btn_signup);
         buttonGoogleSignIn = findViewById(R.id.iv_google);
         textView = findViewById(R.id.tv_login_now);
@@ -111,6 +119,23 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null){
+                            String uid = user.getUid();
+                            String email = user.getEmail();
+                            String firstName = user.getDisplayName();
+                            String lastName = "";
+                            String phoneNumber = user.getPhoneNumber();
+                            String role = "normal";
+                            AppUser newUser = new AppUser(email,uid,role,firstName,lastName,phoneNumber);
+                            db.collection("users").document(uid).set(newUser)
+                                    .addOnSuccessListener(aVoid ->{
+                                        Log.d("Register","User created with normal role");
+                                    })
+                                    .addOnFailureListener(e ->{
+                                        Log.w("Register","Failed to save user profile",e);
+                                    });
+                        }
                         Toast.makeText(SignUpActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
                         goToHomeActivity();
                     } else {
@@ -121,8 +146,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     // ✅ Register with Email and Password
     private void registerWithEmail() {
-        String email = String.valueOf(editTextEmail.getText());
-        String password = String.valueOf(editTextPassword.getText());
+        String email = String.valueOf(etEmail.getText());
+        String password = String.valueOf(etPassword.getText());
+        String firstName = String.valueOf(etFirstName.getText());
+        String lastName = String.valueOf(etLastName.getText());
+        String phoneNumber = String.valueOf(etPhone.getText());
+        String role = "normal";
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(SignUpActivity.this, "Enter Your Email", Toast.LENGTH_SHORT).show();
@@ -137,10 +166,25 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                        if(firebaseUser != null){
+                            String uid = firebaseUser.getUid();
+
+                            AppUser newUser = new AppUser(email,uid,role,firstName,lastName,phoneNumber);
+
+                            db.collection("users").document(uid).set(newUser)
+                                    .addOnSuccessListener(aVoid ->{
+                                        Log.d("Register","User created with normal role");
+                                    })
+                                    .addOnFailureListener(e ->{
+                                        Log.w("Register","Failed to save user profile",e);
+                                    });
+                        }
                         Toast.makeText(SignUpActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
 
                         goToLoginActivity();
                     } else {
+                        Log.w("Register","Auth failed",task.getException());
                         Toast.makeText(SignUpActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                     }
                 });

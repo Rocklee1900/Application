@@ -14,6 +14,8 @@ credentials = "1.5.0-rc01"
 credentialsPlayServicesAuth = "1.3.0"
 googleid = "1.1.1"
 playServicesAuth = "21.3.0"
+firebaseFirestore = "25.1.3"
+firebaseDatabase = "21.0.0"
 
 [libraries]
 credentials-v130 = { module = "androidx.credentials:credentials", version.ref = "credentialsVersion" }
@@ -30,6 +32,8 @@ credentials = { group = "androidx.credentials", name = "credentials", version.re
 credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
 googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
