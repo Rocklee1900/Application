@@ -6,4 +6,5 @@
     <color name="red">#D71F1C</color>
     <color name="et_color">#808080</color>
     <color name="bg_btn">#1F41BB</color>
+    <color name="colorFocus">#673AB7</color>
 </resources>
