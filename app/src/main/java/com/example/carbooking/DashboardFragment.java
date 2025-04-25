@@ -1,29 +1,25 @@
 package com.example.carbooking;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.carbooking.adapter.CarAdapter;
 import com.example.carbooking.databinding.FragmentDashboardBinding;
 import com.example.carbooking.model.Car;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DashboardFragment extends Fragment {
+public class AdminDashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     private CarAdapter carAdapter;
     private List<Car> carList;
 
-    public DashboardFragment() {
+    public AdminDashboardFragment() {
         // Required empty public constructor
     }
 
