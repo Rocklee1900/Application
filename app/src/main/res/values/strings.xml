@@ -25,4 +25,7 @@
     <string name="rent"><![CDATA[Rents >]]></string>
     <string name="discountprice">DiscountPrice</string>
     <string name="carprice">CarPrice</string>
+    <string name="open_drawer" />
+    <string name="close_drawer" />
+    <string name="price">Price</string>
 </resources>

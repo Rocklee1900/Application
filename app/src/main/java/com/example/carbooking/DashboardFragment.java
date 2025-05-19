@@ -1,25 +1,27 @@
 package com.example.carbooking;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import com.example.carbooking.model.AppCar;
 import com.example.carbooking.adapter.CarAdapter;
 import com.example.carbooking.databinding.FragmentDashboardBinding;
-import com.example.carbooking.model.Car;
-
+import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     private CarAdapter carAdapter;
-    private List<Car> carList;
+    private List<AppCar> carList;
 
-    public AdminDashboardFragment() {
+    public DashboardFragment() {
         // Required empty public constructor
     }
 
@@ -46,6 +48,6 @@ public class AdminDashboardFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null; // Prevent memory leaks
+        binding = null;
     }
 }

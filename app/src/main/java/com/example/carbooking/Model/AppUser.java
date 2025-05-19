@@ -1,4 +1,4 @@
-package com.example.carbooking.Model;
+package com.example.carbooking.model;
 
 public class AppUser {
     public String user_email;

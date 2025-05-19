@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,10 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.carbooking.adapter.AdminCarAdapter;
 import com.example.carbooking.adapter.CarAdapter;
 import com.example.carbooking.databinding.FragmentCarBinding;
-import com.example.carbooking.model.Car;
+import com.example.carbooking.model.AppCar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,8 +39,8 @@ public class CarFragment extends Fragment {
 
     private FragmentCarBinding binding;
     private RecyclerView recyclerView;
-    private List<Car> carList;
-    private CarAdapter adapter;
+    private List<AppCar> carList;
+    private AdminCarAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,10 +48,9 @@ public class CarFragment extends Fragment {
 
         recyclerView = binding.recyclerViewCars;
         carList = new ArrayList<>();
-        adapter = new CarAdapter(carList, (car, position) -> showEditDialog(car, position));
+        adapter = new AdminCarAdapter(carList, (car, position) -> showEditDialog(car, position));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
 
         loadCars();
 
@@ -70,10 +71,11 @@ public class CarFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 carList.clear();
                 for (DataSnapshot carSnap : snapshot.getChildren()) {
-                    Car car = carSnap.getValue(Car.class);
+                    AppCar car = carSnap.getValue(AppCar.class);
                     if (car != null) {
                         car.setId(carSnap.getKey());
                         carList.add(car);
+                        Log.d("CarFragment", "Loaded " + car.getName());
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -85,6 +87,7 @@ public class CarFragment extends Fragment {
             }
         });
     }
+
     private void enableSwipeActions() {
         ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
@@ -95,13 +98,13 @@ public class CarFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                Car car = carList.get(position);
+                AppCar car = carList.get(position);  // Use AppCar instead of Car
 
                 new AlertDialog.Builder(requireContext())
                         .setTitle("Delete Car")
                         .setMessage("Are you sure you want to delete this car?")
                         .setPositiveButton("Yes", (dialog, which) -> {
-                            deleteCar(car);
+                            deleteCar(car);  // Use AppCar instead of Car
                             carList.remove(position);
                             adapter.notifyItemRemoved(position);
                         })
@@ -139,14 +142,12 @@ public class CarFragment extends Fragment {
 
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
-
         };
 
         new ItemTouchHelper(swipeCallback).attachToRecyclerView(recyclerView);
     }
 
-
-    private void deleteCar(Car car) {
+    private void deleteCar(AppCar car) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("cars");
         ref.child(car.getId()).removeValue()
                 .addOnSuccessListener(aVoid ->
@@ -155,7 +156,7 @@ public class CarFragment extends Fragment {
                         Toast.makeText(getContext(), "Delete failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
-    private void showEditDialog(Car car, int position) {
+    private void showEditDialog(AppCar car, int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_car, null);
         builder.setView(dialogView);

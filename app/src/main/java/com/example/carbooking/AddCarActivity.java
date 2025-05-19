@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.carbooking.cloudinary.UploadImageToCloudinary;
 import com.example.carbooking.databinding.ActivityAddCarBinding;
-import com.example.carbooking.model.Car;
+import com.example.carbooking.model.AppCar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -101,7 +101,7 @@ public class AddCarActivity extends AppCompatActivity {
             return;
         }
         String carId = UUID.randomUUID().toString();
-        Car car = new Car(carId, name, model, price, description, imageUrl);
+        AppCar car = new AppCar(carId, name, model, price, description, imageUrl);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("cars");
 
 

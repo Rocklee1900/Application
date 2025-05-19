@@ -76,6 +76,7 @@
                     style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/border"
                     android:hint="Car Name" />
 
                 <EditText
@@ -84,6 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Car Model"
+                    android:background="@drawable/border"
                     android:layout_marginTop="8dp"/>
 
                 <EditText
@@ -95,6 +97,7 @@
                     android:gravity="top|start"
                     android:hint="Car Description"
                     android:inputType="textMultiLine"
+                    android:background="@drawable/border"
                     android:minLines="3" />
 
                 <EditText
@@ -102,8 +105,10 @@
                     style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Price"
+                    android:hint="@string/price"
+                    android:textColor="@color/baseColor"
                     android:inputType="numberDecimal"
+                    android:background="@drawable/border"
                     android:layout_marginTop="8dp"/>
 
                 <Button

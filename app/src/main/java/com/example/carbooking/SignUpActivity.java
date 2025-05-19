@@ -9,12 +9,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.carbooking.Model.AppUser;
+import com.example.carbooking.model.AppUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "GoogleActivity";
-    private static final int RC_SIGN_IN = 100; // Request code for Google Sign-In
+    private static final int RC_SIGN_IN = 100;
 
     TextInputEditText etEmail, etPassword,etFirstName,etLastName,etPhone;
     Button buttonSignUp;
@@ -107,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
                     firebaseAuthWithGoogle(account.getIdToken());
                 }
             } catch (ApiException e) {
-                Log.w(TAG, "Google sign-in failed", e);
+                Log.w("googleSign-in", "Google sign-in failed", e);
                 Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show();
             }
         }

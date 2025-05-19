@@ -16,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.example.carbooking.Model.AppUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -49,12 +47,46 @@ public class Login extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null){
+//            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+
+// Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
-            startActivity(intent);
-            finish();
+            String uid = currentUser.getUid();
+            db.collection("users").document(uid).get()
+                    .addOnSuccessListener(document -> {
+                        if (document.exists()) {
+                            String role = document.getString("user_role");
+
+                            if ("admin".equals(role)) {
+                                // Go to admin dashboard
+                                Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                                Log.d("Login", "Welcome Admin!");
+                            } else if ("normal".equals(role)) {
+                                // Go to normal user dashboard
+                                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                                Log.d("Login", "Welcome Normal User!");
+                            } else {
+                                Log.w("Login", "Unknown role: " + role);
+                            }
+                        } else {
+                            Log.w("Login", "User data not found.");
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("Login", "Failed to fetch user data", e);
+                    });
         }
     }
 
