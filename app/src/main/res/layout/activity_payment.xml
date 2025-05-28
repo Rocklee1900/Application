@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentActivity"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payment and Details"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Delivery Address Title -->
+    <TextView
+        android:id="@+id/tvDeliveryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:text="Delivery Address"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <ImageView
+        android:id="@+id/ivHomeIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_home"
+        app:layout_constraintTop_toBottomOf="@id/tvDeliveryTitle"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Home Address -->
+    <TextView
+        android:id="@+id/tvHomeAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:text="Phnom Penh, TerkTla"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/tvDeliveryTitle"
+        app:layout_constraintStart_toEndOf="@id/ivHomeIcon"/>
+
+    <!-- Edit Button -->
+    <Button
+        android:id="@+id/btnEditAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="28dp"
+        android:text="Edit"
+        android:backgroundTint="#D8EEFF"
+        android:textColor="#53B6FF"
+        app:layout_constraintTop_toBottomOf="@id/tvDeliveryTitle"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Content Renter Section -->
+
+    <!-- User Icon -->
+    <TextView
+        android:id="@+id/tvRenttitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="Content Renter"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHomeAddress" />
+
+    <ImageView
+        android:id="@+id/ivusericon"
+        android:layout_width="59dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/user_kuruma"
+        app:layout_constraintTop_toBottomOf="@id/tvRenttitle"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivCall"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_call"
+        app:layout_constraintStart_toEndOf="@id/ivusericon"
+        app:layout_constraintTop_toTopOf="@id/ivusericon" />
+
+    <TextView
+        android:id="@+id/tvCheckout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="116dp"
+        android:text="Check Out"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRenttitle" />
+
+    <TextView
+        android:id="@+id/tvCheckout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time for rent"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCheckout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1hr"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCheckout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ferrari 280 Special"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout2"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCheckout5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$18.75 / hr"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout3"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCheckout6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout4"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCheckout7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+8hr"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout5"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCheckout8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout6"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvCheckout9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$120"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout7"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Pay Now Button -->
+    <Button
+        android:id="@+id/btnPayNow"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        android:text="PAY NOW"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#122A59"
+        app:layout_constraintTop_toBottomOf="@id/tvCheckout9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
